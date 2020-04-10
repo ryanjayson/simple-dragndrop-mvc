@@ -1,4 +1,4 @@
-# Simple Drag and Drop using .NET Framework
+# Simple HTML Drag and Drop with .NET Framework
 
 
 A web project using ASP.NET MVC, C#, Entity Framework, HTML, JS and CSS
