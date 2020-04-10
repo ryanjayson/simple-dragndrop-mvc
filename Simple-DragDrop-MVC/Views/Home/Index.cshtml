@@ -1,0 +1,143 @@
+﻿@model  List<FrontEnd_MVC_Developer_Test.Models.Article>
+@{
+    ViewBag.Title = "Article Page";
+}
+
+<h4>Written By: RYAN JAYSON BERDELAO</h4>
+<h6>Date: May 13, 2016</h6>
+<h6>Created Using the ff technology: C#, EF (SQL SERVER CE),HTML5, CSS3, Javascript, JQuery, Razor </h6>
+<div class="article-pane" >
+    <div class="all-article-pane">
+        <h2>All Articles</h2>
+        <div id ="all-dnd"
+             class="dragable-dropable-area" 
+             ondrop="drop(event)" 
+             ondragover="allowDrop(event)">
+    
+                @foreach (var item in Model)
+                {
+                    if (item.isActive) 
+                    {
+                        continue;
+                    }
+                    <div id="articleItem-@item.articleId" 
+                         class="article-item" 
+                         draggable="true"
+                         ondragstart="drag(event)"
+                         ondragend="dragEnd(event)" >
+                        <h5><b>TITLE:</b> @item.title </h5>
+                        <p class ="articleDesc @if (item.showDescription)
+                                               {
+                                                   @Html.Raw(" show");
+                                               }
+                                                else
+                                               {
+                                                   @Html.Raw(" hidden");
+                                               }"><b>DESCRIPTION:</b> @item.descripton
+                        </p>
+                         <div class="showDescChkbox">
+                            <input type="checkbox" 
+                                   id ="chkbox-@item.articleId"
+                                   onchange = "showDescriptionChanged(this,event)" 
+                                   @if (item.showDescription)
+                                   {
+                                       @Html.Raw(" checked");
+                                   }
+                            />
+                              <label for="chkbox-@item.articleId"> Show description </label>
+                        </div>
+                       
+                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalId-@item.articleId">View Article</button>
+                        <div id="modalId-@item.articleId" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">@item.title </h4>
+                              </div>
+                              <div class="modal-body">
+                                @Html.Raw(item.articleContent)
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                    </div>
+                }
+
+        </div>
+    </div>
+
+    <div class="active-article-pane">
+    <h2>Active Articles</h2>
+
+        <div id ="active-dnd"
+             class="dragable-dropable-area" 
+             ondrop="drop(event)" 
+             ondragover="allowDrop(event)">
+
+               @foreach (var item in Model)
+                {
+                    if (!item.isActive) 
+                    {
+                        continue;
+                    }
+                    <div id="articleItem-@item.articleId" 
+                         class="article-item" 
+                         draggable="true"
+                         ondragstart="drag(event)"
+                         ondragend="dragEnd(event)" >
+                        <h5><b>TITLE:</b> @item.title </h5>
+                        <p class ="articleDesc @if (item.showDescription)
+                                               {
+                                                   @Html.Raw(" show");
+                                               }
+                                                else
+                                               {
+                                                   @Html.Raw(" hidden");
+                                               }"><b>DESCRIPTION:</b> @item.descripton
+                        </p>
+                        <div class="showDescChkbox">
+                            <input type="checkbox"
+                                   id ="chkbox-@item.articleId"
+                                   onchange = "showDescriptionChanged(this,event)"
+                                   @if (item.showDescription)
+                                   {
+                                       @Html.Raw(" checked");
+                                   } >   
+                            <label for="chkbox-@item.articleId"> Show description </label>
+                        </div>
+
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalId-@item.articleId">View Article</button>
+                        <div id="modalId-@item.articleId" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">@item.title </h4>
+                              </div>
+                              <div class="modal-body">
+                                  @Html.Raw(item.articleContent)
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      
+                    </div>
+                }
+
+    </div>
+    </div>
+
+</div>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArticleDatabaseModelStoreContainer" CdmEntityContainer="ArticleDatabaseEntities2">
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="ArticleDatabaseModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="articleId" ColumnName="articleId" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="descripton" ColumnName="descripton" />
+          <ScalarProperty Name="articleContent" ColumnName="articleContent" />
+          <ScalarProperty Name="showDescription" ColumnName="showDescription" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
